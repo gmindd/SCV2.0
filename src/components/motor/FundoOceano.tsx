@@ -18,9 +18,10 @@ export function FundoOceano() {
   const refSurfista = useRegistarMotor("surfista");
   const refSol = useRegistarMotor("sol");
 
-  // A linha da onda a quebrar — atravessa o ecrã da esquerda para a direita.
+  // A face da onda: sobe até ao pico/lip à DIREITA (onde o surfista faz o
+  // take-off) e desce até ficar plana à ESQUERDA (a praia).
   const linhaOnda =
-    "M -40 620 C 220 600 360 540 520 470 S 760 300 980 360 S 1240 540 1500 470";
+    "M -60 650 C 320 640 600 612 840 545 C 1090 472 1250 320 1460 225";
 
   return (
     <div className="fundo-oceano" aria-hidden="true">
@@ -103,10 +104,21 @@ export function FundoOceano() {
           pathLength={1000}
         />
 
-        {/* O surfista — viaja ao longo do traçado */}
-        <g ref={refSurfista as unknown as React.Ref<SVGGElement>}>
-          <circle className="surfista-ponto" r="9" />
-          <circle r="20" fill="none" stroke="var(--cor-coral)" strokeWidth="1.5" opacity="0.5" />
+        {/* O surfista numa prancha — viaja ao longo do traçado (direita→esquerda) */}
+        <g
+          ref={refSurfista as unknown as React.Ref<SVGGElement>}
+          className="surfista"
+        >
+          {/* prancha */}
+          <path className="surf-prancha" d="M -36 1 Q 0 11 36 1 Q 0 -9 -36 1 Z" />
+          {/* corpo agachado, inclinado para a esquerda (sentido da descida) */}
+          <g className="surf-corpo">
+            <path d="M 11 -2 L 3 -18 L -8 -3" />
+            <path d="M 3 -18 L -7 -32" />
+            <path d="M -3 -27 L -22 -23" />
+            <path d="M -3 -27 L 12 -34" />
+          </g>
+          <circle className="surf-cabeca" cx="-10" cy="-37" r="5.5" />
         </g>
       </svg>
 

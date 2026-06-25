@@ -22,7 +22,7 @@ export function Telemetria() {
         >
           0
         </span>
-        <span style={{ marginLeft: "0.25rem" }}>m surfados</span>
+        <span style={{ marginLeft: "0.25rem" }}>ondas surfadas</span>
       </div>
       <div className="telemetria__barra">
         <div
@@ -37,7 +37,7 @@ export function Telemetria() {
         >
           0
         </span>
-        <span style={{ marginLeft: "0.25rem" }}>km/h</span>
+        <span style={{ marginLeft: "0.25rem" }}>m · altura da onda</span>
       </div>
     </aside>
   );

@@ -439,11 +439,21 @@ body.a-acelerar .fundo-oceano__spray { opacity: 0.5; }
   stroke-width: 3;
   stroke-linecap: round;
 }
-.surfista-ponto {
+/* O surfista numa prancha (substitui o ponto) */
+.surfista { will-change: transform; }
+.surf-prancha {
   fill: var(--cor-coral);
-  stroke: var(--cor-espuma);
-  stroke-width: 2;
+  stroke: var(--cor-abismo);
+  stroke-width: 2.5;
 }
+.surf-corpo {
+  fill: none;
+  stroke: var(--cor-abismo);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.surf-cabeca { fill: var(--cor-abismo); }
 
 /* ============================================================
    Movimento reduzido — motor desligado, estado estático legível

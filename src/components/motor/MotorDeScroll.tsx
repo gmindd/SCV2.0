@@ -65,7 +65,7 @@ export function MotorDeScroll({ children }: { children: ReactNode }) {
    O MOTOR — um rAF, um listener de scroll passivo
    ------------------------------------------------------------ */
 
-const MAX_METROS = 540; // "metros surfados" — telemetria principal
+const MAX_ONDAS = 12; // "ondas surfadas" — telemetria principal
 
 function useMotorDeScroll(refs: React.MutableRefObject<Refs>, pathname: string) {
   useEffect(() => {
@@ -98,8 +98,13 @@ function useMotorDeScroll(refs: React.MutableRefObject<Refs>, pathname: string) 
     // 2. Curto-circuito de movimento reduzido — estado estático legível
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
       if (ondaTraco) ondaTraco.style.strokeDashoffset = "0";
-      if (telDist) telDist.textContent = String(MAX_METROS);
-      if (telVel) telVel.textContent = "0";
+      // surfista parado no fim da descida (ponta esquerda da onda)
+      if (surfista && ondaBase && totalOnda > 0) {
+        const p = ondaBase.getPointAtLength(0);
+        surfista.setAttribute("transform", `translate(${p.x} ${p.y})`);
+      }
+      if (telDist) telDist.textContent = String(MAX_ONDAS);
+      if (telVel) telVel.textContent = "1.5";
       if (telEnch)
         telEnch.style[eMobile ? "width" : "height"] = "100%";
       return;
@@ -129,15 +134,25 @@ function useMotorDeScroll(refs: React.MutableRefObject<Refs>, pathname: string) 
       velocidade += ((scrollAlvo - scrollAnterior) - velocidade) * 0.12;
       scrollAnterior = scrollAlvo;
 
-      // (3.1) A assinatura: a onda desenha-se com o progresso
+      // (3.1) A assinatura: a onda desenha-se com o progresso,
+      // da direita para a esquerda (revela a partir do fim do traçado)
       if (ondaTraco) {
-        ondaTraco.style.strokeDashoffset = String(1000 - progresso * 1000);
+        ondaTraco.style.strokeDashoffset = String(progresso * 1000 - 1000);
       }
 
-      // (3.1) O surfista viaja ao longo do traçado da onda
+      // (3.1) O surfista viaja ao longo do traçado, da DIREITA para a ESQUERDA,
+      // a descer a face da onda. Roda para acompanhar o declive (tangente).
       if (surfista && ondaBase && totalOnda > 0) {
-        const p = ondaBase.getPointAtLength(progresso * totalOnda);
-        surfista.setAttribute("transform", `translate(${p.x} ${p.y})`);
+        const s = (1 - progresso) * totalOnda;
+        const p = ondaBase.getPointAtLength(s);
+        const pA = ondaBase.getPointAtLength(Math.max(0, s - 10));
+        const pB = ondaBase.getPointAtLength(Math.min(totalOnda, s + 10));
+        let ang = (Math.atan2(pB.y - pA.y, pB.x - pA.x) * 180) / Math.PI;
+        ang = Math.max(-32, Math.min(32, ang));
+        surfista.setAttribute(
+          "transform",
+          `translate(${p.x} ${p.y}) rotate(${ang})`
+        );
       }
 
       // (3.4) O sol/maré gira proporcional a scrollSuave (continua sempre)
@@ -167,14 +182,17 @@ function useMotorDeScroll(refs: React.MutableRefObject<Refs>, pathname: string) 
         Math.abs(velocidade) > 14
       );
 
-      // (3.2) Telemetria — metros surfados + velocímetro
+      // (3.2) Telemetria — ondas surfadas + altura da onda (m)
       if (telDist) {
-        telDist.textContent = String(Math.round(progresso * MAX_METROS));
+        telDist.textContent = String(Math.round(progresso * MAX_ONDAS));
       }
       if (telVel) {
-        telVel.textContent = String(
-          Math.min(99, Math.round(Math.abs(velocidade) * 1.4))
+        // altura cresce com a velocidade do scroll, em faixa realista de surf
+        const altura = Math.min(
+          4,
+          Math.max(0.5, 0.6 + Math.abs(velocidade) * 0.05)
         );
+        telVel.textContent = altura.toFixed(1);
       }
       if (telEnch) {
         const pct = (progresso * 100).toFixed(1) + "%";
