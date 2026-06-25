@@ -1,0 +1,462 @@
+@import "tailwindcss";
+@import "./componentes.css";
+
+/* ============================================================
+   SURF CLUBE DE VIANA — Design system
+   Paleta: areia / oceano / espuma · acento coral
+   Tipografia: display condensado itálico · corpo neutro · mono telemetria
+   ============================================================ */
+
+:root {
+  /* --- Oceano (frios, escuros) --- */
+  --cor-abismo: #04141f;       /* o tubo, banda de contraste */
+  --cor-oceano: #0a2c3f;
+  --cor-mar: #12506b;
+  --cor-mare: #2b86a6;
+  --cor-agua: #6fc2d6;
+
+  /* --- Areia / espuma (claros, quentes-neutros) --- */
+  --cor-papel: #f4efe6;        /* fundo base (areia molhada clara) */
+  --cor-areia: #e7dcc8;
+  --cor-duna: #d8c9ad;
+  --cor-espuma: #fbfaf6;
+
+  /* --- Acento coral (único, parcimonioso) --- */
+  --cor-coral: #ff5a3c;
+  --cor-coral-escuro: #e23c20;
+  --cor-coral-suave: #ff8163;
+
+  /* --- Tinta / texto --- */
+  --cor-tinta: #0a1a22;
+  --cor-tinta-suave: #3a4c54;
+  --cor-tinta-fraca: #6b7b82;
+
+  /* --- Papéis semânticos --- */
+  --fundo: var(--cor-papel);
+  --texto: var(--cor-tinta);
+  --acento: var(--cor-coral);
+
+  /* --- Tipografia --- */
+  --fonte-display: "Archivo Narrow", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --fonte-corpo: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fonte-mono: "Spline Sans Mono", ui-monospace, "SF Mono", "Roboto Mono", monospace;
+
+  /* --- Layout --- */
+  --largura-max: 1240px;
+  --raio: 4px;
+  --sombra-dura: 5px 5px 0 var(--cor-tinta);
+  --sombra-dura-coral: 5px 5px 0 var(--cor-coral);
+}
+
+@theme inline {
+  --color-abismo: var(--cor-abismo);
+  --color-oceano: var(--cor-oceano);
+  --color-mar: var(--cor-mar);
+  --color-mare: var(--cor-mare);
+  --color-agua: var(--cor-agua);
+  --color-papel: var(--cor-papel);
+  --color-areia: var(--cor-areia);
+  --color-duna: var(--cor-duna);
+  --color-espuma: var(--cor-espuma);
+  --color-coral: var(--cor-coral);
+  --color-coral-escuro: var(--cor-coral-escuro);
+  --color-tinta: var(--cor-tinta);
+  --color-tinta-suave: var(--cor-tinta-suave);
+  --color-tinta-fraca: var(--cor-tinta-fraca);
+
+  --font-display: var(--fonte-display);
+  --font-corpo: var(--fonte-corpo);
+  --font-mono: var(--fonte-mono);
+
+  --breakpoint-xs: 30rem;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-corpo);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+::selection { background: var(--cor-coral); color: var(--cor-espuma); }
+
+/* Foco de teclado visível (regra de qualidade §6.5) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--cor-coral);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Tipografia — papéis
+   ============================================================ */
+
+.eyebrow {
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cor-tinta-suave);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.6rem;
+  height: 2px;
+  background: var(--cor-coral);
+}
+.eyebrow--claro { color: var(--cor-agua); }
+.eyebrow--claro::before { background: var(--cor-coral); }
+
+.mono {
+  font-family: var(--fonte-mono);
+  letter-spacing: 0.06em;
+}
+
+.display-xl {
+  font-size: clamp(3.2rem, 13vw, 11rem);
+}
+.display-lg {
+  font-size: clamp(2.6rem, 8vw, 6rem);
+}
+.display-md {
+  font-size: clamp(1.9rem, 4.5vw, 3.4rem);
+}
+
+/* ============================================================
+   Layout helpers
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.seccao {
+  position: relative;
+  padding-block: clamp(4.5rem, 10vw, 9rem);
+}
+
+/* ============================================================
+   Botões — detalhes de assinatura (skew no hover, sombra dura)
+   ============================================================ */
+
+.btn {
+  --bg: var(--cor-coral);
+  --fg: var(--cor-espuma);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.7rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--fonte-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 2px solid var(--cor-tinta);
+  box-shadow: var(--sombra-dura);
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(.2,.7,.2,1), box-shadow 0.18s,
+    background 0.18s;
+}
+.btn:hover {
+  transform: skewX(-3deg) translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--cor-tinta);
+}
+.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--cor-tinta); }
+
+.btn--ghost {
+  --bg: transparent;
+  --fg: var(--cor-tinta);
+  box-shadow: none;
+}
+.btn--ghost:hover { box-shadow: var(--sombra-dura); background: var(--cor-espuma); }
+
+.btn--claro {
+  --bg: var(--cor-espuma);
+  --fg: var(--cor-tinta);
+}
+
+/* ============================================================
+   Reveal (useRevelar + IntersectionObserver)
+   ============================================================ */
+
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+.revelar.visivel {
+  opacity: 1;
+  transform: none;
+}
+.revelar--atraso-1.visivel { transition-delay: 0.08s; }
+.revelar--atraso-2.visivel { transition-delay: 0.16s; }
+.revelar--atraso-3.visivel { transition-delay: 0.24s; }
+.revelar--atraso-4.visivel { transition-delay: 0.32s; }
+
+/* ============================================================
+   Marquee / fita (loop CSS infinito, reage à velocidade via skew)
+   ============================================================ */
+
+.fita {
+  --vel-skew: 0deg;
+  overflow: hidden;
+  border-block: 2px solid var(--cor-tinta);
+  background: var(--cor-coral);
+  color: var(--cor-espuma);
+  padding-block: 0.85rem;
+  transform: skewX(var(--vel-skew));
+  transition: transform 0.2s ease-out;
+}
+.fita__pista {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: deslizar 28s linear infinite;
+}
+.fita__item {
+  font-family: var(--fonte-display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  text-transform: uppercase;
+  padding-inline: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.fita__item::after {
+  content: "·";
+  color: var(--cor-tinta);
+}
+@keyframes deslizar {
+  to { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   Telemetria (régua lateral desktop · barra inferior mobile)
+   ============================================================ */
+
+.telemetria {
+  position: fixed;
+  z-index: 40;
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--cor-tinta-suave);
+  pointer-events: none;
+}
+.telemetria__valor {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--cor-tinta);
+  font-variant-numeric: tabular-nums;
+}
+.telemetria__barra {
+  background: rgba(10, 26, 34, 0.12);
+  overflow: hidden;
+}
+.telemetria__enchimento {
+  background: var(--cor-coral);
+  transition: none;
+}
+
+/* Desktop: régua vertical à direita */
+@media (min-width: 901px) {
+  .telemetria {
+    top: 50%;
+    right: 1.2rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    text-align: right;
+  }
+  .telemetria__barra { width: 4px; height: 38vh; }
+  .telemetria__enchimento { width: 100%; height: 0%; }
+}
+
+/* Mobile: barra inferior */
+@media (max-width: 900px) {
+  body { padding-bottom: 3.2rem; }
+  .telemetria {
+    left: 0; right: 0; bottom: 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 1rem;
+    background: var(--cor-espuma);
+    border-top: 2px solid var(--cor-tinta);
+  }
+  .telemetria__barra { height: 4px; width: 100%; }
+  .telemetria__enchimento { height: 100%; width: 0%; }
+}
+
+/* ============================================================
+   Secção de contraste (o tubo) — banda escura com clip-path diagonal
+   ============================================================ */
+
+.tubo {
+  background: var(--cor-abismo);
+  color: var(--cor-espuma);
+  clip-path: polygon(0 3vw, 100% 0, 100% calc(100% - 3vw), 0 100%);
+  margin-block: clamp(2rem, 6vw, 5rem);
+}
+.tubo h1, .tubo h2, .tubo h3 { color: var(--cor-espuma); }
+.tubo .eyebrow { color: var(--cor-agua); }
+
+/* ============================================================
+   Stat blocks (números em destaque)
+   ============================================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+.stat__num {
+  font-family: var(--fonte-display);
+  font-style: italic;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 0.9;
+  color: var(--cor-coral);
+  font-variant-numeric: tabular-nums;
+}
+.stat__rotulo {
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cor-tinta-suave);
+  margin-top: 0.4rem;
+}
+.tubo .stat__rotulo { color: var(--cor-agua); }
+
+/* ============================================================
+   Cartões + tilt 3D no hover
+   ============================================================ */
+
+.cartao {
+  background: var(--cor-espuma);
+  border: 2px solid var(--cor-tinta);
+  box-shadow: var(--sombra-dura);
+  transition: transform 0.2s cubic-bezier(.2,.7,.2,1), box-shadow 0.2s;
+  transform-style: preserve-3d;
+}
+.cartao-perspectiva { perspective: 900px; }
+
+/* ============================================================
+   Fundo animado fixo (o oceano)
+   ============================================================ */
+
+.fundo-oceano {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.fundo-oceano svg { width: 100%; height: 100%; }
+
+.conteudo {
+  position: relative;
+  z-index: 1;
+}
+
+/* Spray / linhas de água acima de um limiar de velocidade (§3.6) */
+.fundo-oceano__spray {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0,
+      transparent 38px,
+      rgba(255, 255, 255, 0.5) 39px,
+      transparent 41px
+    );
+  mix-blend-mode: screen;
+}
+body.a-acelerar .fundo-oceano__spray { opacity: 0.5; }
+
+/* Traçado da onda (a assinatura) */
+.onda-traco {
+  fill: none;
+  stroke: var(--cor-coral);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+.onda-base {
+  fill: none;
+  stroke: rgba(43, 134, 166, 0.22);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.surfista-ponto {
+  fill: var(--cor-coral);
+  stroke: var(--cor-espuma);
+  stroke-width: 2;
+}
+
+/* ============================================================
+   Movimento reduzido — motor desligado, estado estático legível
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .revelar { opacity: 1; transform: none; }
+  .onda-traco { stroke-dashoffset: 0; }
+  .fita__pista { animation: none; }
+}
