@@ -38,8 +38,20 @@ export default function EscolaPage() {
       </section>
 
       {/* Horários + info */}
-      <section className="tubo">
-        <div className="seccao container grelha-2">
+      <section className="tubo tubo--media">
+        <video
+          className="tubo__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/videos/reel.mp4" type="video/mp4" />
+        </video>
+        <div className="tubo__veu" />
+        <div className="seccao container grelha-2 tubo__conteudo">
           <div className="revelar">
             <span className="eyebrow eyebrow--claro">Horários</span>
             <div className="mt-2">

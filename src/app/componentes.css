@@ -303,12 +303,42 @@
 
 /* ---------------- Banner / CTA ---------------- */
 .banner-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background: var(--cor-azul);
   color: var(--cor-espuma);
   border: 2px solid var(--cor-tinta);
   box-shadow: var(--sombra-dura);
   padding: clamp(2rem, 6vw, 4rem);
   text-align: center;
+}
+
+/* Vídeo de fundo no banner (substitui o fundo azul) */
+.banner-cta__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+.banner-cta__veu {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* véu azul-escuro: mantém o tom de marca e a legibilidade do texto */
+  background: linear-gradient(
+    180deg,
+    rgba(10, 44, 63, 0.58),
+    rgba(4, 20, 31, 0.66)
+  );
+}
+.banner-cta__conteudo { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-cta__video { display: none; }
 }
 .banner-cta h2 { font-size: clamp(2rem, 6vw, 4.4rem); }
 .banner-cta p { max-width: 50ch; margin: 1rem auto 2rem; font-size: 1.1rem; }

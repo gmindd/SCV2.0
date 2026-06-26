@@ -41,8 +41,20 @@ export default function AltoRendimentoPage() {
       </section>
 
       {/* Programa em 3 fases — secção de contraste */}
-      <section className="tubo">
-        <div className="seccao container">
+      <section className="tubo tubo--media">
+        <video
+          className="tubo__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/videos/altrorendimento.mp4" type="video/mp4" />
+        </video>
+        <div className="tubo__veu" />
+        <div className="seccao container tubo__conteudo">
           <div className="cabeca-seccao">
             <span className="eyebrow eyebrow--claro revelar">O programa</span>
             <h2 className="revelar">Três fases, um percurso de elite</h2>

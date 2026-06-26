@@ -220,27 +220,41 @@ export default async function Homepage() {
 
       {/* ---------- CTA · Praia (5) ---------- */}
       <section className="seccao container">
-        <div className="banner-cta revelar">
-          <span className="marco" style={{ justifyContent: "center" }}>
-            <span className="marco__num" style={{ color: "var(--cor-espuma)" }}>
-              {MARCOS[5].num}
+        <div className="banner-cta banner-cta--media revelar">
+          <video
+            className="banner-cta__video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          >
+            <source src="/videos/reel.mp4" type="video/mp4" />
+          </video>
+          <div className="banner-cta__veu" />
+          <div className="banner-cta__conteudo">
+            <span className="marco" style={{ justifyContent: "center" }}>
+              <span className="marco__num" style={{ color: "var(--cor-espuma)" }}>
+                {MARCOS[5].num}
+              </span>
+              <span className="marco__label" style={{ color: "rgba(255,255,255,0.8)" }}>
+                {MARCOS[5].label}
+              </span>
             </span>
-            <span className="marco__label" style={{ color: "rgba(255,255,255,0.8)" }}>
-              {MARCOS[5].label}
-            </span>
-          </span>
-          <h2>O mar está à espera</h2>
-          <p>
-            Inscreve-te na escola ou candidata-te ao Centro de Alto Rendimento.
-            A tua sessão começa no Cabedelo.
-          </p>
-          <div className="flex-linha" style={{ justifyContent: "center" }}>
-            <Link href="/escola/inscricao" className="btn btn--claro">
-              Inscrever agora
-            </Link>
-            <a href={`tel:${CLUBE.telefoneRaw}`} className="btn btn--claro">
-              {CLUBE.telefone}
-            </a>
+            <h2>O mar está à espera</h2>
+            <p>
+              Inscreve-te na escola ou candidata-te ao Centro de Alto Rendimento.
+              A tua sessão começa no Cabedelo.
+            </p>
+            <div className="flex-linha" style={{ justifyContent: "center" }}>
+              <Link href="/escola/inscricao" className="btn btn--claro">
+                Inscrever agora
+              </Link>
+              <a href={`tel:${CLUBE.telefoneRaw}`} className="btn btn--claro">
+                {CLUBE.telefone}
+              </a>
+            </div>
           </div>
         </div>
       </section>
