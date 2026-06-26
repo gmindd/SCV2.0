@@ -101,8 +101,20 @@ export default async function Homepage() {
       </section>
 
       {/* ---------- CAR · Drop (2) — secção de contraste (o tubo) ---------- */}
-      <section className="tubo">
-        <div className="seccao container">
+      <section className="tubo tubo--media">
+        <video
+          className="tubo__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/videos/altrorendimento.mp4" type="video/mp4" />
+        </video>
+        <div className="tubo__veu" />
+        <div className="seccao container tubo__conteudo">
           <div className="cabeca-seccao">
             <span className="marco revelar">
               <span className="marco__num">{MARCOS[2].num}</span>
