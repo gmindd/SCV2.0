@@ -56,7 +56,7 @@ export default function LoginPage() {
             fontFamily: "var(--fonte-display)",
             fontStyle: "italic",
             fontSize: "2rem",
-            color: "var(--cor-coral)",
+            color: "var(--cor-azul)",
           }}
         >
           SCV · Admin

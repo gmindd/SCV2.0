@@ -39,7 +39,7 @@ export function FundoOceano() {
         }}
       >
         <svg viewBox="0 0 200 200" style={{ width: "100%", height: "100%" }}>
-          <circle cx="100" cy="100" r="46" fill="rgba(255,129,99,0.16)" />
+          <circle cx="100" cy="100" r="46" fill="rgba(95,196,221,0.16)" />
           {Array.from({ length: 24 }).map((_, i) => {
             const ang = (i / 24) * Math.PI * 2;
             const x1 = 100 + Math.cos(ang) * 58;
@@ -53,7 +53,7 @@ export function FundoOceano() {
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke="rgba(255,90,60,0.18)"
+                stroke="rgba(20,169,203,0.18)"
                 strokeWidth={i % 2 ? 1.5 : 4}
                 strokeLinecap="round"
               />
@@ -90,7 +90,7 @@ export function FundoOceano() {
           />
         </g>
 
-        {/* A onda: base translúcida + traçado coral que se desenha */}
+        {/* A onda: base translúcida + traçado azul que se desenha */}
         <path
           ref={refOndaBase as unknown as React.Ref<SVGPathElement>}
           className="onda-base"

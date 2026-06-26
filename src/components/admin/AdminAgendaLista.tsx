@@ -84,7 +84,7 @@ export function AdminAgendaLista() {
                 <button
                   onClick={() => apagar(ev)}
                   disabled={demo}
-                  style={{ background: "none", border: "none", cursor: "pointer", color: "var(--cor-coral)" }}
+                  style={{ background: "none", border: "none", cursor: "pointer", color: "var(--cor-azul)" }}
                 >
                   Apagar
                 </button>

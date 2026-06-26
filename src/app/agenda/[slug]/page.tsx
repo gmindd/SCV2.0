@@ -39,7 +39,7 @@ export default async function EventoPage({
               {evento.type}
             </span>
           )}
-          <span className="mono" style={{ fontSize: "0.9rem", color: "var(--cor-coral)" }}>
+          <span className="mono" style={{ fontSize: "0.9rem", color: "var(--cor-azul)" }}>
             {dataCurta(evento.event_date)}
           </span>
         </div>

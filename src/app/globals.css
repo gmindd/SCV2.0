@@ -3,7 +3,7 @@
 
 /* ============================================================
    SURF CLUBE DE VIANA — Design system
-   Paleta: areia / oceano / espuma · acento coral
+   Paleta: areia / oceano / espuma · acento azul (do logótipo)
    Tipografia: display condensado itálico · corpo neutro · mono telemetria
    ============================================================ */
 
@@ -21,10 +21,10 @@
   --cor-duna: #d8c9ad;
   --cor-espuma: #fbfaf6;
 
-  /* --- Acento coral (único, parcimonioso) --- */
-  --cor-coral: #ff5a3c;
-  --cor-coral-escuro: #e23c20;
-  --cor-coral-suave: #ff8163;
+  /* --- Acento azul (do logótipo SCV — único, parcimonioso) --- */
+  --cor-azul: #14a9cb;
+  --cor-azul-escuro: #0e8aa6;
+  --cor-azul-suave: #5fc4dd;
 
   /* --- Tinta / texto --- */
   --cor-tinta: #0a1a22;
@@ -34,7 +34,7 @@
   /* --- Papéis semânticos --- */
   --fundo: var(--cor-papel);
   --texto: var(--cor-tinta);
-  --acento: var(--cor-coral);
+  --acento: var(--cor-azul);
 
   /* --- Tipografia --- */
   --fonte-display: "Archivo Narrow", "Arial Narrow", "Helvetica Neue", sans-serif;
@@ -45,7 +45,7 @@
   --largura-max: 1240px;
   --raio: 4px;
   --sombra-dura: 5px 5px 0 var(--cor-tinta);
-  --sombra-dura-coral: 5px 5px 0 var(--cor-coral);
+  --sombra-dura-azul: 5px 5px 0 var(--cor-azul);
 }
 
 @theme inline {
@@ -58,8 +58,8 @@
   --color-areia: var(--cor-areia);
   --color-duna: var(--cor-duna);
   --color-espuma: var(--cor-espuma);
-  --color-coral: var(--cor-coral);
-  --color-coral-escuro: var(--cor-coral-escuro);
+  --color-azul: var(--cor-azul);
+  --color-azul-escuro: var(--cor-azul-escuro);
   --color-tinta: var(--cor-tinta);
   --color-tinta-suave: var(--cor-tinta-suave);
   --color-tinta-fraca: var(--cor-tinta-fraca);
@@ -109,7 +109,7 @@ a { color: inherit; text-decoration: none; }
 
 img { display: block; max-width: 100%; }
 
-::selection { background: var(--cor-coral); color: var(--cor-espuma); }
+::selection { background: var(--cor-azul); color: var(--cor-espuma); }
 
 /* Foco de teclado visível (regra de qualidade §6.5) */
 a:focus-visible,
@@ -117,7 +117,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 3px solid var(--cor-coral);
+  outline: 3px solid var(--cor-azul);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -140,10 +140,10 @@ select:focus-visible {
   content: "";
   width: 1.6rem;
   height: 2px;
-  background: var(--cor-coral);
+  background: var(--cor-azul);
 }
 .eyebrow--claro { color: var(--cor-agua); }
-.eyebrow--claro::before { background: var(--cor-coral); }
+.eyebrow--claro::before { background: var(--cor-azul); }
 
 .mono {
   font-family: var(--fonte-mono);
@@ -181,7 +181,7 @@ select:focus-visible {
    ============================================================ */
 
 .btn {
-  --bg: var(--cor-coral);
+  --bg: var(--cor-azul);
   --fg: var(--cor-espuma);
   display: inline-flex;
   align-items: center;
@@ -245,7 +245,7 @@ select:focus-visible {
   --vel-skew: 0deg;
   overflow: hidden;
   border-block: 2px solid var(--cor-tinta);
-  background: var(--cor-coral);
+  background: var(--cor-azul);
   color: var(--cor-espuma);
   padding-block: 0.85rem;
   transform: skewX(var(--vel-skew));
@@ -298,7 +298,7 @@ select:focus-visible {
   overflow: hidden;
 }
 .telemetria__enchimento {
-  background: var(--cor-coral);
+  background: var(--cor-azul);
   transition: none;
 }
 
@@ -362,7 +362,7 @@ select:focus-visible {
   font-style: italic;
   font-size: clamp(2.6rem, 6vw, 4.6rem);
   line-height: 0.9;
-  color: var(--cor-coral);
+  color: var(--cor-azul);
   font-variant-numeric: tabular-nums;
 }
 .stat__rotulo {
@@ -427,7 +427,7 @@ body.a-acelerar .fundo-oceano__spray { opacity: 0.5; }
 /* Traçado da onda (a assinatura) */
 .onda-traco {
   fill: none;
-  stroke: var(--cor-coral);
+  stroke: var(--cor-azul);
   stroke-width: 3;
   stroke-linecap: round;
   stroke-dasharray: 1000;
@@ -442,7 +442,7 @@ body.a-acelerar .fundo-oceano__spray { opacity: 0.5; }
 /* O surfista numa prancha (substitui o ponto) */
 .surfista { will-change: transform; }
 .surf-prancha {
-  fill: var(--cor-coral);
+  fill: var(--cor-azul);
   stroke: var(--cor-abismo);
   stroke-width: 2.5;
 }

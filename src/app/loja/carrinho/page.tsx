@@ -103,7 +103,7 @@ export default function CarrinhoPage() {
               <button className="voltar" onClick={limpar} style={{ background: "none", border: "none", cursor: "pointer" }}>
                 Esvaziar carrinho
               </button>
-              <strong className="mono" style={{ fontSize: "1.2rem", color: "var(--cor-coral)" }}>
+              <strong className="mono" style={{ fontSize: "1.2rem", color: "var(--cor-azul)" }}>
                 Total · {preco(total)}
               </strong>
             </div>
