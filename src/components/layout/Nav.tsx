@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV, CLUBE } from "@/lib/conteudo";
 import { useCarrinho } from "@/components/loja/CarrinhoContexto";
+import { Logo } from "@/components/Logo";
 
 export function Nav() {
   const pathname = usePathname();
@@ -25,8 +26,7 @@ export function Nav() {
     <header className={`nav ${solido ? "nav--solido" : ""}`}>
       <div className="container nav__barra">
         <Link href="/" className="nav__logo" aria-label={CLUBE.nome}>
-          <span className="nav__sigla">SCV</span>
-          <span className="nav__sub mono">Surf Clube de Viana</span>
+          <Logo tamanho={40} />
         </Link>
 
         <nav className="nav__links" aria-label="Principal">

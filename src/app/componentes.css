@@ -22,16 +22,26 @@
   justify-content: space-between;
   height: 68px;
 }
-.nav__logo { display: flex; flex-direction: column; line-height: 1; }
-.nav__sigla {
+.nav__logo { display: flex; align-items: center; line-height: 1; }
+
+/* Lockup do logótipo (tubarão + wordmark) */
+.logo { display: inline-flex; align-items: center; gap: 0.55rem; }
+.logo__txt { display: flex; flex-direction: column; line-height: 1; }
+.logo__sigla {
   font-family: var(--fonte-display);
   font-style: italic;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--cor-azul);
   letter-spacing: -0.02em;
 }
-.nav__sub { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cor-tinta-suave); }
+.logo__sub {
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cor-tinta-suave);
+  margin-top: 2px;
+}
 .nav__links { display: flex; align-items: center; gap: clamp(0.8rem, 2vw, 1.6rem); }
 .nav__link {
   font-family: var(--fonte-mono);

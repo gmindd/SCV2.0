@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { CLUBE, NAV } from "@/lib/conteudo";
+import { Logo } from "@/components/Logo";
 
 export function Footer() {
   return (
     <footer className="rodape" id="contacto">
       <div className="container rodape__grelha">
         <div>
-          <div className="rodape__sigla">SCV</div>
+          <Logo mono tamanho={52} comSubtitulo={false} />
           <p className="rodape__lema mono">
             Onde o Atlântico nos treina desde 1989
           </p>

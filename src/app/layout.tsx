@@ -17,11 +17,9 @@ export const metadata: Metadata = {
   description:
     "Primeira escola de surf de Portugal e Centro de Alto Rendimento. Praia do Cabedelo, Viana do Castelo. Fundado em 1989.",
   icons: {
-    icon: [
-      { url: "/icones/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icones/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: "/icones/apple-touch-icon.png",
+    icon: { url: "/icones/favicon.svg", type: "image/svg+xml" },
+    shortcut: "/icones/favicon.svg",
+    apple: "/icones/favicon.svg",
   },
   openGraph: {
     title: "Surf Clube de Viana",
