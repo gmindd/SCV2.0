@@ -218,6 +218,38 @@ export default async function Homepage() {
         </section>
       )}
 
+      {/* ---------- COMUNIDADE / GALERIA ---------- */}
+      <section className="seccao container">
+        <div className="cabeca-seccao">
+          <span className="eyebrow revelar">Comunidade</span>
+          <h2 className="revelar">O clube é a sua gente</h2>
+          <p className="revelar revelar--atraso-1">
+            Espírito de equipa dentro e fora de água, desde a primeira aula até
+            ao pódio.
+          </p>
+        </div>
+        <div className="galeria revelar">
+          <div
+            className="galeria__item galeria__item--largo galeria__item--alto"
+            style={{ backgroundImage: "url(/imagens/galeria/equipa-01.jpg)" }}
+            role="img"
+            aria-label="Espírito de equipa numa competição"
+          />
+          <div
+            className="galeria__item galeria__item--largo"
+            style={{ backgroundImage: "url(/imagens/galeria/formacao-01.jpg)" }}
+            role="img"
+            aria-label="Jovens da escola na praia"
+          />
+          <div
+            className="galeria__item galeria__item--largo"
+            style={{ backgroundImage: "url(/imagens/galeria/bodyboard-01.jpg)" }}
+            role="img"
+            aria-label="Bodyboard no Cabedelo"
+          />
+        </div>
+      </section>
+
       {/* ---------- CTA · Praia (5) ---------- */}
       <section className="seccao container">
         <div className="banner-cta banner-cta--media revelar">

@@ -22,6 +22,15 @@ export default function EscolaPage() {
         idades. Equipamento incluído e instrutores certificados pela FPS.
       </PageHero>
 
+      <section className="container" style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
+        <div
+          className="foto-larga revelar"
+          style={{ backgroundImage: "url(/imagens/escola/briefing.jpg)" }}
+          role="img"
+          aria-label="Briefing antes de uma aula de iniciação na praia"
+        />
+      </section>
+
       <Fita itens={["Surf", "Bodyboard", "Longboard", "SUP", "Surf Adaptado", "Waveski"]} />
 
       {/* Modalidades */}
@@ -34,6 +43,25 @@ export default function EscolaPage() {
               <p className="modalidade__desc">{m.desc}</p>
             </div>
           ))}
+        </div>
+
+        <div className="foto-duo mt-3">
+          <div
+            className="foto-duo__item revelar"
+            style={{ backgroundImage: "url(/imagens/escola/surf.jpg)" }}
+            role="img"
+            aria-label="Surf no Cabedelo"
+          >
+            <span className="foto-duo__legenda">Surf</span>
+          </div>
+          <div
+            className="foto-duo__item revelar revelar--atraso-1"
+            style={{ backgroundImage: "url(/imagens/escola/bodyboard.jpg)" }}
+            role="img"
+            aria-label="Bodyboard no Cabedelo"
+          >
+            <span className="foto-duo__legenda">Bodyboard</span>
+          </div>
         </div>
       </section>
 

@@ -301,6 +301,45 @@
 .galeria__item--largo { grid-column: span 2; }
 @media (max-width: 760px) { .galeria { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; } }
 
+/* ---------------- Bandas de fotografia ---------------- */
+.foto-larga {
+  aspect-ratio: 16 / 6;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid var(--cor-tinta);
+  box-shadow: var(--sombra-dura);
+}
+.foto-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+.foto-duo__item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid var(--cor-tinta);
+  box-shadow: var(--sombra-dura);
+}
+.foto-duo__legenda {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: var(--cor-azul);
+  color: var(--cor-espuma);
+  font-family: var(--fonte-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.85rem;
+  border-top: 2px solid var(--cor-tinta);
+  border-right: 2px solid var(--cor-tinta);
+}
+@media (max-width: 600px) {
+  .foto-duo { grid-template-columns: 1fr; }
+}
+
 /* ---------------- Banner / CTA ---------------- */
 .banner-cta {
   position: relative;

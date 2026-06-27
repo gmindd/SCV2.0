@@ -21,6 +21,15 @@ export default function AltoRendimentoPage() {
         mil euros e ondas constantes todo o ano. Aqui formam-se campeões.
       </PageHero>
 
+      <section className="container" style={{ marginTop: "1.5rem" }}>
+        <div
+          className="foto-larga revelar"
+          style={{ backgroundImage: "url(/imagens/alto-rendimento/surf-elite.jpg)" }}
+          role="img"
+          aria-label="Surf de alto rendimento no Cabedelo"
+        />
+      </section>
+
       {/* Stats */}
       <section className="seccao container">
         <div className="stats">
@@ -78,6 +87,14 @@ export default function AltoRendimentoPage() {
         <div className="revelar">
           <span className="eyebrow">Infraestrutura</span>
           <h2 className="display-md mt-1">Tudo num só lugar, à beira-mar</h2>
+          <div
+            className="foto-duo__item mt-2"
+            style={{ backgroundImage: "url(/imagens/alto-rendimento/analise.jpg)" }}
+            role="img"
+            aria-label="Sala de vídeo e análise tática"
+          >
+            <span className="foto-duo__legenda">Análise de vídeo</span>
+          </div>
         </div>
         <ul className="lista-traco revelar revelar--atraso-1">
           {CAR_INFRA.map((i) => (
