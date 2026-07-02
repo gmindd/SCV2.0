@@ -12,18 +12,30 @@ export function Nav() {
   const { contagem } = useCarrinho();
   const [aberto, setAberto] = useState(false);
   const [solido, setSolido] = useState(false);
+  const [oculta, setOculta] = useState(false);
 
   useEffect(() => setAberto(false), [pathname]);
 
   useEffect(() => {
-    const aoScroll = () => setSolido(window.scrollY > 40);
+    let ultimoY = window.scrollY;
+    const aoScroll = () => {
+      const y = window.scrollY;
+      setSolido(y > 40);
+      // esconde ao descer (depois da 1ª dobra), reaparece assim que sobe
+      setOculta(y > 180 && y > ultimoY);
+      ultimoY = y;
+    };
     aoScroll();
     window.addEventListener("scroll", aoScroll, { passive: true });
     return () => window.removeEventListener("scroll", aoScroll);
   }, []);
 
   return (
-    <header className={`nav ${solido ? "nav--solido" : ""}`}>
+    <header
+      className={`nav ${solido ? "nav--solido" : ""} ${
+        oculta && !aberto ? "nav--oculta" : ""
+      }`}
+    >
       <div className="container nav__barra">
         <Link href="/" className="nav__logo" aria-label={CLUBE.nome}>
           <Logo tamanho={40} />

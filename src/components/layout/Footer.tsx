@@ -5,6 +5,11 @@ import { Logo } from "@/components/Logo";
 export function Footer() {
   return (
     <footer className="rodape" id="contacto">
+      <div className="container">
+        <div className="rodape__marca" aria-hidden="true">
+          Surf Clube de Viana
+        </div>
+      </div>
       <div className="container rodape__grelha">
         <div>
           <Logo mono tamanho={52} comSubtitulo={false} />

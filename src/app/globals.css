@@ -81,7 +81,17 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: var(--cor-azul) var(--cor-areia);
 }
+
+/* Scrollbar temática (WebKit) */
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: var(--cor-areia); }
+::-webkit-scrollbar-thumb {
+  background: var(--cor-azul);
+  border: 2px solid var(--cor-areia);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--cor-azul-escuro); }
 
 body {
   margin: 0;
@@ -93,6 +103,27 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+/* Grão fotográfico subtil por cima de tudo (textura de papel/sal) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+}
+
+/* Texto contornado — palavra de assinatura */
+.texto-contorno { color: var(--cor-azul); }
+@supports (-webkit-text-stroke: 1px black) {
+  .texto-contorno {
+    color: transparent;
+    -webkit-text-stroke: 0.035em var(--cor-azul);
+  }
 }
 
 h1, h2, h3, h4 {
@@ -183,6 +214,9 @@ select:focus-visible {
 .btn {
   --bg: var(--cor-azul);
   --fg: var(--cor-espuma);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -200,6 +234,17 @@ select:focus-visible {
   transition: transform 0.18s cubic-bezier(.2,.7,.2,1), box-shadow 0.18s,
     background 0.18s;
 }
+/* maré que sobe dentro do botão no hover */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: rgba(4, 20, 31, 0.2);
+  transform: translateY(102%);
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+}
+.btn:hover::after { transform: translateY(0); }
 .btn:hover {
   transform: skewX(-3deg) translate(-2px, -2px);
   box-shadow: 7px 7px 0 var(--cor-tinta);
@@ -225,12 +270,15 @@ select:focus-visible {
 .revelar {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1);
-  will-change: opacity, transform;
+  filter: blur(7px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1),
+    filter 0.7s ease;
+  will-change: opacity, transform, filter;
 }
 .revelar.visivel {
   opacity: 1;
   transform: none;
+  filter: none;
 }
 .revelar--atraso-1.visivel { transition-delay: 0.08s; }
 .revelar--atraso-2.visivel { transition-delay: 0.16s; }
@@ -269,6 +317,14 @@ select:focus-visible {
 .fita__item::after {
   content: "·";
   color: var(--cor-tinta);
+  -webkit-text-stroke: 0;
+}
+/* alternância cheio/contorno — textura tipográfica na fita */
+@supports (-webkit-text-stroke: 1px black) {
+  .fita__item:nth-child(even) {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--cor-espuma);
+  }
 }
 @keyframes deslizar {
   to { transform: translateX(-50%); }
@@ -487,6 +543,38 @@ body.a-acelerar .fundo-oceano__spray { opacity: 0.5; }
 }
 .surf-cabeca { fill: var(--cor-abismo); }
 
+/* spray atrás do surfista quando o scroll acelera */
+.surfista-spray { opacity: 0; transition: opacity 0.3s ease; }
+.surfista-spray circle { fill: var(--cor-espuma); stroke: var(--cor-agua); stroke-width: 1; }
+body.a-acelerar .surfista-spray { opacity: 0.9; }
+
+/* ============================================================
+   Animação de entrada do hero (linha a linha, sem scroll)
+   ============================================================ */
+
+.hero__titulo .linha {
+  display: block;
+  overflow: hidden;
+  padding-inline: 0.06em;
+  margin-inline: -0.06em;
+  padding-block: 0.14em 0.08em; /* folga para acentos (Â) e descendentes */
+  margin-block: -0.14em -0.08em;
+}
+.hero__titulo .linha > span { display: inline-block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__titulo .linha > span {
+    animation: hero-subir 0.9s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .hero__titulo .linha:nth-child(1) > span { animation-delay: 0.05s; }
+  .hero__titulo .linha:nth-child(2) > span { animation-delay: 0.17s; }
+  .hero__titulo .linha:nth-child(3) > span { animation-delay: 0.29s; }
+}
+@keyframes hero-subir {
+  from { transform: translateY(115%) skewY(3deg); }
+  to { transform: none; }
+}
+
 /* ============================================================
    Movimento reduzido — motor desligado, estado estático legível
    ============================================================ */
@@ -498,7 +586,8 @@ body.a-acelerar .fundo-oceano__spray { opacity: 0.5; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .revelar { opacity: 1; transform: none; }
+  .revelar { opacity: 1; transform: none; filter: none; }
   .onda-traco { stroke-dashoffset: 0; }
   .fita__pista { animation: none; }
+  .hero__media { display: none; }
 }

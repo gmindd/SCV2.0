@@ -119,6 +119,14 @@ export function FundoOceano() {
             <path d="M -3 -27 L 12 -34" />
           </g>
           <circle className="surf-cabeca" cx="-10" cy="-37" r="5.5" />
+          {/* spray que aparece atrás da prancha quando o scroll acelera */}
+          <g className="surfista-spray">
+            <circle cx="24" cy="-6" r="3.2" />
+            <circle cx="33" cy="-14" r="2.4" />
+            <circle cx="40" cy="-4" r="1.9" />
+            <circle cx="29" cy="3" r="1.7" />
+            <circle cx="46" cy="-10" r="1.4" />
+          </g>
         </g>
       </svg>
 

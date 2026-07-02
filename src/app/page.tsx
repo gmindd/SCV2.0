@@ -40,10 +40,16 @@ export default async function Homepage() {
           </span>
         </div>
         <div>
-          <h1 className="hero__titulo revelar">
-            Surf de elite,
-            <br />
-            treinado pelo <span className="ac">Atlântico</span>
+          <h1 className="hero__titulo">
+            <span className="linha">
+              <span>Surf de elite,</span>
+            </span>
+            <span className="linha">
+              <span>treinado pelo</span>
+            </span>
+            <span className="linha">
+              <span className="texto-contorno">Atlântico</span>
+            </span>
           </h1>
           <p className="hero__lema revelar revelar--atraso-1">
             Primeira escola de surf de Portugal e Centro de Alto Rendimento. À
@@ -57,6 +63,16 @@ export default async function Homepage() {
               Centro de Alto Rendimento
             </Link>
           </div>
+        </div>
+
+        {/* faixa de vídeo — cortes dinâmicos do clube */}
+        <div className="hero__media revelar revelar--atraso-3" data-parallax="0.04">
+          <video autoPlay muted loop playsInline preload="auto" aria-hidden="true">
+            <source src="/videos/10secs.mp4" type="video/mp4" />
+          </video>
+          <span className="hero__media-tag mono">
+            Cabedelo · Viana do Castelo
+          </span>
         </div>
         <span className="hero__scroll">Scroll · drop in</span>
       </section>
